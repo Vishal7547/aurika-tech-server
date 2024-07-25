@@ -1,0 +1,14 @@
+###Project Information
+
+Technologies Used
+Backend: Node.js v18.17.1
+
+Database: mongoose ^8.5.1
+
+### start command 
+##step 1 
+-- npm i
+##step 2
+-- npm start 
+##with nodemon
+-- npm run dev

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurika</title>
+</head>
+<style>
+    .mainHeader {
+        height: 100vh;
+        font-family: arial, sans-serif;
+        padding: 10px 40px;
+
+    }
+
+    .upper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .upper .right {
+        display: flex;
+        justify-content: end;
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .upper .right p {
+        line-height: 2px;
+        font-weight: 900;
+    }
+
+    .upper .right h1 {
+        line-height: 2px;
+        font-weight: 300;
+    }
+
+    .address {
+        display: flex;
+        justify-content: space-between;
+        line-height: 5px;
+        white-space: normal !important;
+
+    }
+
+    .address .left {
+        max-width: 550px;
+        white-space: normal !important;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .address .right {
+        max-width: 550px;
+        line-height: 0px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .address .right .insideRight {
+        display: flex;
+        justify-content: end;
+        flex-direction: column;
+        align-items: end;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .size {
+        font-size: 1.5rem;
+        line-height: 0.1;
+    }
+
+    .lastAddressSection {
+        margin-top: 50px;
+    }
+
+    .lastAddressSection2 {
+        margin-top: 10px;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        flex-direction: column;
+    }
+
+    .shipping {
+        display: flex;
+        justify-content: space-between;
+        line-height: 5px;
+        white-space: normal !important;
+    }
+
+    .shipping .right {
+        max-width: 700px;
+        display: flex;
+        justify-content: end;
+        flex-direction: column;
+        align-items: end;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .shipping .left {
+        display: flex;
+        align-items: end;
+
+    }
+
+    table {
+
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid black;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(1) {
+        background-color: grey;
+    }
+
+    .bg-set {
+        background-color: grey;
+
+    }
+
+    .lastSection {
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    .lastSection_upper h1 {
+        line-height: 10px;
+    }
+
+    .lastSection_lower {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        flex-direction: column;
+        border-top: 1px solid black;
+
+    }
+
+    .lastPoint {
+        line-height: 1px;
+    }
+</style>
+
+<body>
+    <section class="mainHeader">
+        <div class="upper">
+            <div class="left">
+                <div class="logo">
+                    <img src="https://internshala-uploads.internshala.com/logo/38dz1ughyiu-11891.png.webp" alt="logo"
+                        height="70" width="120" />
+                </div>
+            </div>
+            <div class="right">
+                <h1><b>Tax Invoice/Bill of supply/Cah Memo</b></h1>
+                <p>(original for recipient)</p>
+            </div>
+        </div>
+        <div class="address">
+            <div class="left">
+                <h1>Sold By :</h1>
+                <p class="name size">{{seller_name}}</p>
+                <p class="addressSection size">{{seller_address}}</p>
+                <div class="moreAddress size">
+                    <span>{{seller_city}}</span>, <span>{{seller_state}}</span>,
+                    <span>{{seller_pincode}}</span>
+                </div>
+                <div class="lastAddressSection size">
+                    <p><b>PAN NO:</b>{{seller_panNo}}</p>
+                    <p><b>GST Registration No:</b> {{seller_gst_reg_no}}</p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="insideRight">
+                    <h1>Billing Address :</h1>
+                    <p class="name size" style="line-height: 0px">
+                        {{billing_name}}
+                    </p>
+                    <p class="addressSection size">{{billing_address}}</p>
+                    <div class="moreAddress size">
+                        <span>{{billing_city}}</span>, <span>{{billing_state}}</span>,
+                        <span>{{billing_pincode}}</span>
+                    </div>
+                    <div class="lastAddressSection2 size">
+                        <p><b>State/UT Code:</b>{{billing_state_ut_code}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shipping">
+            <div class="left">
+                <div class="lastAddressSection size">
+                    <p><b>Order No:</b>{{order_orderNo}}</p>
+                    <p><b>Order Date:</b> {{order_orderDate}}</p>
+                </div>
+            </div>
+            <div class="right">
+                <h1>Shipping Address :</h1>
+                <p class="name size" style="line-height: 0px">
+                    {{shipping_name}}
+                </p>
+                <p class="addressSection size">{{shipping_address}}</p>
+                <div class="moreAddress size">
+                    <span>{{shipping_city}}</span>, <span>{{shipping_state}}</span>,
+                    <span>{{shipping_pincode}}</span>
+                </div>
+                <div class="lastAddressSection2 lastAddressSection3 size">
+                    <p><b>State/UT Code:</b> {{shipping_state_ut_code}}</p>
+                    <p><b>Place Of Supply:</b> {{place_of_supply}}</p>
+                    <p><b>Place Of Delivery:</b> {{place_of_delivery}}</p>
+                    <p><b>Invoice No:</b> {{invoice_no}}</p>
+                    <p><b>Invoice Details:</b> {{invoice_details}}</p>
+                    <p><b>Invoice Date:</b>{{invoice_date}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="items">
+            <table>
+                <tr>
+                    <th><span>SI.NO</span></th>
+                    <th><span>Description</span></th>
+                    <th>
+                        <span>
+                            Unit
+                            <br />
+                            Price
+                        </span>
+
+                    </th>
+                    <th>
+                        <span> Qty </span>
+                    </th>
+                    <th>
+                        <span>Net
+                            <br />
+                            Amount</span>
+                    </th>
+                    <th>
+                        <span>Tax
+                            <br />
+                            Rate</span>
+                    </th>
+                    <th>
+                        <span>Tax
+                            <br />
+                            Type</span>
+                    </th>
+                    <th>
+                        <span>Tax
+                            <br />
+                            Amount</span>
+                    </th>
+                    <th>
+                        <span>Total
+                            <br />
+                            Amount</span>
+                    </th>
+                </tr>
+
+
+                {{itemRows}}
+
+                <tr>
+                    <td colspan="7">TOTAL:</td>
+                    <td class="bg-set">₹{{total_Tax}}</td>
+                    <td class="bg-set">₹{{total_amount}}</td>
+
+
+                </tr>
+            </table>
+            <div class="lastSection">
+                <div class="lastSection_upper" style="line-height: 1;">
+
+                    <h1>
+                        <strong>
+                            AMOUNT IN WORDS:
+                        </strong>
+                    </h1>
+                    <h1>
+                        <strong>
+                            {{amount_in_words}}
+                        </strong>
+                    </h1>
+                </div>
+                <div class="lastSection_lower">
+                    <h2>For Vishal Skill Exports</h2>
+                    <img src={{signature_url}} alt="logo" height="50" width="250" />
+                    <h2>Authorized Signatory</h2>
+                </div>
+            </div>
+            <h1 class="lastPoint">
+                <strong>Whether tax is payable under reverse charge - {{reverse_charge}}</strong>
+            </h1>
+        </div>
+
+    </section>
+</body>
+
+</html>
