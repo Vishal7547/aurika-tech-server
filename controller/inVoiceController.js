@@ -38,7 +38,7 @@ export const postInvoice = async (req, res) => {
       invoice_details,
       invoice_date,
       reverse_charge,
-      // items,
+      items,
     } = req.body;
     if (
       !seller_name ||
@@ -66,8 +66,8 @@ export const postInvoice = async (req, res) => {
       !order_orderDate ||
       !invoice_no ||
       !invoice_details ||
-      !invoice_date
-      // !items
+      !invoice_date ||
+      !items
     ) {
       return res.status(400).json({
         success: false,
@@ -122,44 +122,45 @@ export const postInvoice = async (req, res) => {
       shipping_state_ut_code,
     };
 
-    const items = [
-      {
-        description: "Formal shirt with kurtis design",
-        unit_price: 3536,
-        quantity: 1,
-        discount: 0, // Adjust as needed
-        tax_rate: 2.5, // Tax rate as a percentage
-      },
-      {
-        description: "Casual jeans",
-        unit_price: 1200,
-        quantity: 2,
-        discount: 100, // Discount in currency
-        tax_rate: 5, // Tax rate as a percentage
-      },
-      {
-        description: "Leather jacket",
-        unit_price: 4500,
-        quantity: 1,
-        discount: 200,
-        tax_rate: 10,
-      },
-      {
-        description: "Summer dress",
-        unit_price: 2500,
-        quantity: 3,
-        discount: 150,
-        tax_rate: 7,
-      },
-      {
-        description: "Running shoes",
-        unit_price: 1800,
-        quantity: 1,
-        discount: 0,
-        tax_rate: 8,
-      },
-    ];
-    const itemDetails = items.map((item) => {
+    // const items = [
+    //   {
+    //     description: "Formal shirt with kurtis design",
+    //     unit_price: 3536,
+    //     quantity: 1,
+    //     discount: 0, // Adjust as needed
+    //     tax_rate: 2.5, // Tax rate as a percentage
+    //   },
+    //   {
+    //     description: "Casual jeans",
+    //     unit_price: 1200,
+    //     quantity: 2,
+    //     discount: 100, // Discount in currency
+    //     tax_rate: 5, // Tax rate as a percentage
+    //   },
+    //   {
+    //     description: "Leather jacket",
+    //     unit_price: 4500,
+    //     quantity: 1,
+    //     discount: 200,
+    //     tax_rate: 10,
+    //   },
+    //   {
+    //     description: "Summer dress",
+    //     unit_price: 2500,
+    //     quantity: 3,
+    //     discount: 150,
+    //     tax_rate: 7,
+    //   },
+    //   {
+    //     description: "Running shoes",
+    //     unit_price: 1800,
+    //     quantity: 1,
+    //     discount: 0,
+    //     tax_rate: 8,
+    //   },
+    // ];
+    const products = JSON.parse(items);
+    const itemDetails = products.map((item) => {
       const { description, unit_price, quantity, discount, tax_rate } = item;
 
       const netAmount = unit_price * quantity - discount;
